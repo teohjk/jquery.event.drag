@@ -7,7 +7,18 @@
 // Updated: 2012-05-21
 // REQUIRES: jquery 1.7.x, event.drag 2.2
 
-module.exports = function( $ ){
+(function (factory) {
+  if (typeof define === 'function' && define.amd) {
+    // AMD. Register as an anonymous module.
+    define(['jquery'], factory);
+  } else if (typeof exports === 'object') {
+    // Node/CommonJS style for Browserify
+    module.exports = factory;
+  } else {
+    // Browser globals
+    factory(jQuery);
+  }
+} (function( $ ){
   require('./jquery.event.drag')($);
 
   // local refs (increase compression)
@@ -84,4 +95,4 @@ module.exports = function( $ ){
   		$event.remove( this, "."+ drag.livekey ); // cleanup delegation
   	});
   };
-};
+}))
