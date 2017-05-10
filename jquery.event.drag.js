@@ -7,7 +7,18 @@
 // Updated: 2012-05-21
 // REQUIRES: jquery 1.7.x
 
-module.exports = function( $ ){
+(function (factory) {
+  if (typeof define === 'function' && define.amd) {
+    // AMD. Register as an anonymous module.
+    define(['jquery'], factory);
+  } else if (typeof exports === 'object') {
+    // Node/CommonJS style for Browserify
+    module.exports = factory;
+  } else {
+    // Browser globals
+    factory(jQuery);
+  }
+} (function( $ ){
   // add the jquery instance method
   $.fn.drag = function( str, arg, opts ){
   	// figure out the event type
@@ -398,3 +409,4 @@ module.exports = function( $ ){
   // share the same special event configuration with related events...
   $special.draginit = $special.dragstart = $special.dragend = drag;
 };
+))
