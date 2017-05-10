@@ -408,5 +408,5 @@
 
   // share the same special event configuration with related events...
   $special.draginit = $special.dragstart = $special.dragend = drag;
-};
+}
 ))
